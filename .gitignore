@@ -1,0 +1,15 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build
+bin/
+obj/
+out/
+
+# Configurações locais
+appsettings.Development.json
+
+# Outros
+*.log

@@ -1,0 +1,6 @@
+@PeNaEstrada.Server_HostAddress = http://localhost:5287
+
+GET {{PeNaEstrada.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

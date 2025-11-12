@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PeNaEstrada.Application\PeNaEstrada.Application.csproj" />
+    <ProjectReference Include="..\PeNaEstrada.Domain\PeNaEstrada.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
