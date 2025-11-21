@@ -1,16 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PeNaEstrada.Infrastructure.Identity;
-using PeNaEstrada.Infrastructure.Persistence; 
+using PeNaEstrada.Infrastructure.Persistence;
+using PeNaEstrada.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-
+    options.UseSqlServer(connectionString,
+        b => b.MigrationsAssembly("PeNaEstrada.Infrastructure")));
 
 builder.Services.AddIdentity < ApplicationUser, IdentityRole > ()
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -22,6 +21,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<TokenService>();
 
 var app = builder.Build();
 
