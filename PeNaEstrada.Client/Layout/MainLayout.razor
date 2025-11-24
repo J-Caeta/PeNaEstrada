@@ -1,0 +1,36 @@
+﻿@inherits LayoutComponentBase
+@inject PeNaEstrada.Client.Services.AuthService AuthService
+@inject NavigationManager Navigation
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthorizeView>
+                <Authorized>
+                    <span class="me-3">E aí, @context.User.Identity?.Name! 👋</span>
+                    <button class="btn btn-link" @onclick="Logout">Sair</button>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="login">Entrar</a>
+                    <a href="register" class="ms-3">Registrar</a>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private async Task Logout()
+    {
+        await AuthService.Logout();
+        Navigation.NavigateTo("/login");
+    }
+}

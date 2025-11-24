@@ -1,0 +1,65 @@
+﻿@page "/login"
+@inject AuthService AuthService
+@inject NavigationManager Navigation
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 400px; border-radius: 15px;">
+        <div class="text-center mb-4">
+            <h2 style="color: #2e5d48; font-family: Georgia, serif;">Embarcar 🗺️</h2>
+            <p class="text-muted">Continue sua jornada</p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger text-center" role="alert">
+                @errorMessage
+            </div>
+        }
+
+        <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+            <DataAnnotationsValidator />
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">E-mail</label>
+                <InputText @bind-Value="loginModel.Email" class="form-control" placeholder="seu@email.com" />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold">Senha</label>
+                <InputText @bind-Value="loginModel.Password" type="password" class="form-control" placeholder="******" />
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn text-white fw-bold py-2" style="background-color: #ce9c4c;">
+                    Fazer Checkin
+                </button>
+            </div>
+        </EditForm>
+
+        <div class="text-center mt-3">
+            <small>Ainda não tem conta? <a href="register" style="color: #2e5d48; font-weight: bold;">Registre-se aqui</a></small>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginRequest loginModel = new LoginRequest();
+    private string? errorMessage;
+
+    private async Task HandleLogin()
+    {
+        errorMessage = null;
+
+var error = await AuthService.Login(loginModel);
+
+        if (error == null)
+        {
+            // Sucesso! Vai para a página inicial
+            Navigation.NavigateTo("/");
+        }
+        else
+        {
+            errorMessage = error;
+        }
+    }
+}

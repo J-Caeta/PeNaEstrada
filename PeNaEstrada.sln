@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeNaEstrada.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeNaEstrada.Infrastructure", "PeNaEstrada.Infrastructure\PeNaEstrada.Infrastructure.csproj", "{C43DFBA7-F72A-44AD-B494-7912BAA75E5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeNaEstrada.Client", "PeNaEstrada.Client\PeNaEstrada.Client.csproj", "{CC46D2FE-7C94-449F-B938-29D22989257A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeNaEstrada.Application.Tests", "PeNaEstrada.Application.Tests\PeNaEstrada.Application.Tests.csproj", "{51549D6D-AECE-4C56-832C-47CA4B527B52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
@@ -28,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeNaEstrada.Client", "PeNaEstrada.Client\PeNaEstrada.Client.csproj", "{B69480C7-CA8F-4DC5-B989-B484D9E965E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,6 @@ Global
 		{C43DFBA7-F72A-44AD-B494-7912BAA75E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C43DFBA7-F72A-44AD-B494-7912BAA75E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C43DFBA7-F72A-44AD-B494-7912BAA75E5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC46D2FE-7C94-449F-B938-29D22989257A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC46D2FE-7C94-449F-B938-29D22989257A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC46D2FE-7C94-449F-B938-29D22989257A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC46D2FE-7C94-449F-B938-29D22989257A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{51549D6D-AECE-4C56-832C-47CA4B527B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{51549D6D-AECE-4C56-832C-47CA4B527B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51549D6D-AECE-4C56-832C-47CA4B527B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +55,10 @@ Global
 		{00CE43CC-4504-409D-B760-9CC1D36DACCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00CE43CC-4504-409D-B760-9CC1D36DACCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00CE43CC-4504-409D-B760-9CC1D36DACCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B69480C7-CA8F-4DC5-B989-B484D9E965E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69480C7-CA8F-4DC5-B989-B484D9E965E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69480C7-CA8F-4DC5-B989-B484D9E965E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69480C7-CA8F-4DC5-B989-B484D9E965E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
