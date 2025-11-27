@@ -21,4 +21,8 @@
     <ProjectReference Include="..\PeNaEstrada.Infrastructure\PeNaEstrada.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

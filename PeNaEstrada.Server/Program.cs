@@ -34,6 +34,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<TokenService>();
 
+builder.Services.AddScoped<PeNaEstrada.Application.Interfaces.IExperienciaRepository, PeNaEstrada.Infrastructure.Persistence.Repositories.ExperienciaRepository>();
+
 var app = builder.Build();
 
 
@@ -44,6 +46,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseCors("AllowAll");
 
