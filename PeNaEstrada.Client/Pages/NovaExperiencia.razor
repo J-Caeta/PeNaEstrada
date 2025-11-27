@@ -1,0 +1,121 @@
+﻿@page "/nova-experiencia"
+@using PeNaEstrada.Client.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject ExperienciaService ExperienciaService
+@inject NavigationManager Navigation
+
+<PageTitle>Nova Experiência</PageTitle>
+<h1>Compartilhe sua Nova Experiência</h1>
+<p>Conte-nos sobre sua última viagem e inspire outros viajantes!</p>
+
+<div class="container mt-4" style="max-widht: 800px;">
+    <div class="card shadow-lg border-0">
+        <div class="card-header text-white py-3" style="background-color: #2D6A4F">
+            <h3 class="mb-0 text-center" style="font-family: Georgia, serif;">📷 Registrar Nova Experiência</h3>
+        </div>
+        <div class="card-body p-4">
+            
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger">@errorMessage</div>
+            }
+
+            <EditForm Model="experiencia" OnValidSubmit="HandleSubmit">
+                <DataAnnotationsValidator />
+
+                <div class="row">
+                    @* Coluna da Esquerda: Dados *@
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Descrição / Título</label>
+                            <InputText @bind-Value="experiencia.Descricao" class="form-control" placeholder="Ex: Trilha na Pedra Bonita" />
+                            <ValidationMessage For="@(() => experiencia.Descricao)" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Local</label>
+                            <InputText @bind-Value="experiencia.Local" class="form-control" placeholder="Ex: Rio de Janeiro, RJ" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Data da Vivência</label>
+                            <InputDate @bind-Value="experiencia.DataDaExperiencia" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Tipo de Experiência</label>
+                            <InputSelect @bind-Value="experiencia.Tipo" class="form-select">
+                                <option value="trilha">🥾 Trilha</option>
+                                <option value="praia">🏖️ Praia</option>
+                                <option value="hospedagem">🏨 Hospedagem</option>
+                                <option value="restaurante">🍽️ Restaurante</option>
+                                <option value="ponto turistico">🗼 Ponto Turístico</option>
+                            </InputSelect>
+                        </div>
+                    </div>
+
+                    @* Coluna da Direita: Foto e Nota *@
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Foto de Capa</label>
+                            @* InputFile: O componente mágico do Blazor para uploads *@
+                            <InputFile OnChange="HandleFileSelected" class="form-control" accept=".jpg,.jpeg,.png" />
+                            <small class="text-muted">Máx: 70MB</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Sua Avaliação (1 a 5)</label>
+                            <InputNumber @bind-Value="experiencia.Nota" class="form-control" min="1" max="5" />
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <InputCheckbox @bind-Value="experiencia.Publica" class="form-check-input" id="chkPublica" />
+                            <label class="form-check-label" for="chkPublica">
+                                Publicar no Feed? (Visível para todos)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-outline-secondary me-2" @onclick='() => Navigation.NavigateTo("/")'>Cancelar</button>
+                    <button type="submit" class="btn text-white fw-bold px-5" style="background-color: #ce9c4c;">Salvar Experiência</button>
+                </div>
+
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private ExperienciaModel experiencia = new ExperienciaModel();
+    private string? errorMessage;
+
+    private void HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        experiencia.Imagem = e.File;
+    }
+
+    private async Task HandleSubmit()
+    {
+        if (experiencia.Imagem == null)
+        {
+            errorMessage = "Por favor, selecione uma foto de capa!";
+            return;
+        }
+
+    var sucesso = await ExperienciaService.CriarExperiencia(experiencia);
+
+        if (sucesso)
+        {
+            Navigation.NavigateTo("/");
+        }
+        else
+        {
+            errorMessage = "Ocorreu um erro ao salvar sua experiência. Tente novamente.";
+        }
+    }
+}

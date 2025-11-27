@@ -1,7 +1,39 @@
 ﻿@page "/"
+@inject NavigationManager Navigation
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Pé na Estrada - Início</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="text-center mt-5">
+    <h1 class="display-4" style="color: #2e5d48; font-family: Georgia, serif;">
+        Pé na Estrada 🌄
+    </h1>
+    <p class="lead text-muted">
+        "Entre mapas e memórias: registre sua jornada."
+    </p>
 
-Welcome to your new app.
+    <hr class="my-4" style="width: 50%; margin: auto;">
+
+    <div class="mt-4">
+        <p>Sua experiência foi salva com sucesso!</p>
+
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button class="btn btn-lg text-white px-4 gap-3"
+                    style="background-color: #ce9c4c;"
+                    @onclick='() => Navigation.NavigateTo("nova-experiencia")'>
+                📷 Nova Experiência
+            </button>
+
+            <button class="btn btn-outline-secondary btn-lg px-4" disabled>
+                📓 Ver Meu Diário (Em Breve)
+            </button>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class="container-texto">
+Desenvolvido por: Jhonata Caetano (Dev) e Brenda Del Puppo (QA)
+</div>
